@@ -4,8 +4,14 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start", "--", "--port", "4300"],
-      "port": 4300
+      "runtimeArgs": [
+        "run",
+        "start",
+        "--",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
     }
   ]
 }

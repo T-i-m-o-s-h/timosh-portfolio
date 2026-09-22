@@ -43,7 +43,7 @@ site means editing that file — nothing is hardcoded into templates.
 
 ```bash
 npm install
-npm start          # http://localhost:4300
+npm start          # http://localhost:4321
 npm run build      # -> dist/timosh-portfolio/browser
 ```
 
