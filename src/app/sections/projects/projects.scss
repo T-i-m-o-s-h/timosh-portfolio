@@ -4,6 +4,13 @@
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 }
 
+/* Four projects: a 2x2 block reads better than a row of three plus an orphan. */
+@media (min-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .project {
   --accent-project: var(--accent);
   position: relative;

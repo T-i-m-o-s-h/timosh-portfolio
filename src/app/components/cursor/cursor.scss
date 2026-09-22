@@ -10,6 +10,14 @@
 @media (hover: hover) and (pointer: fine) {
   :host {
     display: block;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out);
+  }
+
+  /* Added once the pointer has actually moved — before that we'd be drawing
+     the ring at a guessed position in the middle of the page. */
+  :host(.is-live) {
+    opacity: 1;
   }
 }
 

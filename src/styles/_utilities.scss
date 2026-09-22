@@ -10,6 +10,11 @@
   padding-block: var(--section-y);
 }
 
+/* Anchor jumps must clear the fixed header. */
+section[id] {
+  scroll-margin-top: clamp(80px, 11vh, 108px);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

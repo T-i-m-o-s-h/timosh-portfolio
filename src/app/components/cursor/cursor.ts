@@ -32,6 +32,7 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
   private readonly dotRef = viewChild.required<ElementRef<HTMLElement>>('dot');
   private readonly labelRef = viewChild.required<ElementRef<HTMLElement>>('label');
 
+  private readonly hostEl = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly doc = inject(DOCUMENT);
   private readonly zone = inject(NgZone);
   private readonly pointer = inject(PointerService);
@@ -41,6 +42,7 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
   private rx = 0;
   private ry = 0;
   private enabled = false;
+  private live = false;
 
   ngAfterViewInit(): void {
     if (!this.pointer.fine() || this.motion.reduced()) return;
@@ -77,6 +79,13 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
   private readonly loop = () => {
     const x = this.pointer.x();
     const y = this.pointer.y();
+
+    // Until the pointer has moved we'd be drawing a ring at a guessed
+    // position, so stay hidden. Toggled directly to keep CD out of the loop.
+    if (!this.live && this.pointer.active()) {
+      this.live = true;
+      this.hostEl.nativeElement.classList.add('is-live');
+    }
 
     // The dot is exact; the ring eases toward it for a trailing feel.
     this.rx += (x - this.rx) * 0.16;

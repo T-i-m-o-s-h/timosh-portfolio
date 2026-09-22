@@ -68,13 +68,18 @@ void main() {
   float core = pow(smoothstep(0.52, 1.0, f), 2.0);
 
   vec3 col = base;
-  col += violet * body * 0.40;
-  col += teal * core * 0.26;
-  col += violet * halo * 0.14;
-  col += teal * halo * core * 0.30;
+  col += violet * body * 0.26;
+  col += teal * core * 0.17;
+  col += violet * halo * 0.10;
+  col += teal * halo * core * 0.22;
 
-  col *= smoothstep(1.30, 0.22, length(uv - 0.5));
-  col *= 1.0 - u_scroll * 0.42;
+  col *= smoothstep(1.15, 0.28, length(uv - 0.5));
+
+  // Content sits on the left, so keep that side darker and let the nebula
+  // build toward the right where nothing has to stay readable.
+  col *= mix(0.62, 1.0, smoothstep(0.10, 0.85, uv.x));
+
+  col *= 1.0 - u_scroll * 0.35;
 
   float dither = (hash(gl_FragCoord.xy + u_time) - 0.5) / 255.0;
   gl_FragColor = vec4(col + dither, 1.0);
