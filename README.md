@@ -39,6 +39,10 @@ pointer and scroll traffic never triggers change detection.
 **Content** lives in one typed module, `src/app/core/resume.data.ts`. Editing the
 site means editing that file — nothing is hardcoded into templates.
 
+**The résumé** is served from `public/Timosh_R_R_Resume.pdf` and linked from three
+places (hero, contact card, mobile menu) via `PROFILE.resume`. To update it,
+replace that file — the filename the visitor saves is `PROFILE.resumeFile`.
+
 ## Running it
 
 ```bash

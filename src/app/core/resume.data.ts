@@ -12,6 +12,8 @@ export const PROFILE = {
   linkedin: 'https://linkedin.com/in/timosh-r-r',
   github: 'https://github.com/T-i-m-o-s-h',
   available: 'Open to Full Stack & Frontend roles',
+  resume: '/Timosh_R_R_Resume.pdf',
+  resumeFile: 'Timosh-R-R-Resume.pdf',
 } as const;
 
 export const ABOUT_PARAGRAPHS: readonly string[] = [

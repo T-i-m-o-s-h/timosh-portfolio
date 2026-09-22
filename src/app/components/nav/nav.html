@@ -70,5 +70,6 @@
   <div class="sheet__foot">
     <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
     <a [href]="profile.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a [href]="profile.resume" [attr.download]="profile.resumeFile" (click)="close()">Résumé (PDF)</a>
   </div>
 </div>

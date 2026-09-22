@@ -166,9 +166,19 @@
 }
 
 .btn--ghost {
+  gap: 0.5rem;
   font-family: var(--font-mono);
   font-size: var(--t-xs);
   letter-spacing: 0.06em;
+}
+
+.btn--ghost svg {
+  flex: none;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.btn--ghost:hover svg {
+  transform: translateY(2px);
 }
 
 /* ---- meta ---- */
