@@ -1,0 +1,70 @@
+<section class="hero" id="hero">
+  <div class="hero__grid shell">
+    <div class="hero__status">
+      <span class="hero__pulse" aria-hidden="true"></span>
+      <span>{{ profile.available }}</span>
+    </div>
+
+    <h1 class="hero__title">
+      <span class="visually-hidden">{{ profile.name }} — {{ profile.role }}</span>
+
+      <span class="hero__line" aria-hidden="true">
+        @for (c of lineOne; track $index) {
+          <span class="hero__char" [style.animation-delay]="delay(0, $index)">{{ c }}</span>
+        }
+      </span>
+
+      <span class="hero__line hero__line--indent" aria-hidden="true">
+        @for (c of lineTwo; track $index) {
+          <span class="hero__char" [style.animation-delay]="delay(1, $index)">{{ c }}</span>
+        }
+        <em class="hero__amp" [style.animation-delay]="delay(1, 9)">&amp;</em>
+      </span>
+
+      <span class="hero__line" aria-hidden="true">
+        @for (c of lineThree; track $index) {
+          <span class="hero__char hero__char--outline"
+                [style.animation-delay]="delay(2, $index)">{{ c }}</span>
+        }
+      </span>
+    </h1>
+
+    <div class="hero__foot">
+      <p class="hero__tagline">{{ profile.tagline }}</p>
+
+      <div class="hero__actions">
+        <button type="button" class="btn btn--solid" (click)="scroll.scrollTo('projects')"
+                appMagnetic [strength]="12" data-cursor="View">
+          <span>See the work</span>
+        </button>
+        <a class="btn btn--ghost" [href]="'mailto:' + profile.email" appMagnetic [strength]="12"
+           data-cursor="Email">
+          <span>{{ profile.email }}</span>
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero__meta">
+      <div class="hero__meta-row">
+        <span class="hero__meta-key">Based in</span>
+        <span class="hero__meta-val">Madurai, TN · India</span>
+      </div>
+      <div class="hero__meta-row">
+        <span class="hero__meta-key">Focus</span>
+        <span class="hero__meta-val">Angular · .NET · React · Python</span>
+      </div>
+      <div class="hero__meta-row">
+        <span class="hero__meta-key">Currently</span>
+        <span class="hero__meta-val">Justo Global</span>
+      </div>
+    </aside>
+
+    <button type="button" class="hero__scroll" (click)="scroll.scrollTo('about')"
+            aria-label="Scroll to about">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-track" aria-hidden="true">
+        <span class="hero__scroll-thumb"></span>
+      </span>
+    </button>
+  </div>
+</section>

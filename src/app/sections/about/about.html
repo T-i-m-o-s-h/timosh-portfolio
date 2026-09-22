@@ -1,0 +1,59 @@
+<section class="section" id="about">
+  <div class="shell">
+    <app-section-heading
+      index="01"
+      label="About"
+      title="Four years, four countries, one habit: delete the manual step."
+      lede="A full stack developer who learns whatever the problem needs and ships it end to end." />
+
+    <div class="about">
+      <div class="about__body">
+        @for (para of paragraphs; track $index) {
+          <p class="about__para" [appReveal]="$index * 110">{{ para }}</p>
+        }
+
+        <ul class="stats" [appReveal]="120">
+          @for (stat of stats; track stat.label) {
+            <li class="stat">
+              <span class="stat__value" appCountUp [to]="stat.value"
+                    [suffix]="stat.suffix">0</span>
+              <span class="stat__label">{{ stat.label }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <aside class="about__side">
+        <div class="panel" [appReveal]="160">
+          <h3 class="panel__title">Education</h3>
+          <ul class="panel__list">
+            @for (item of education; track item.degree) {
+              <li class="edu">
+                <span class="edu__period">{{ item.period }}</span>
+                <span class="edu__degree">{{ item.degree }}</span>
+                <span class="edu__place">{{ item.place }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="panel" [appReveal]="230">
+          <h3 class="panel__title">Languages</h3>
+          <ul class="panel__list">
+            @for (lang of languages; track lang.name) {
+              <li class="lang">
+                <div class="lang__row">
+                  <span class="lang__name">{{ lang.name }}</span>
+                  <span class="lang__level">{{ lang.level }}</span>
+                </div>
+                <div class="lang__bar" role="presentation">
+                  <span class="lang__fill" [style.width.%]="lang.strength"></span>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

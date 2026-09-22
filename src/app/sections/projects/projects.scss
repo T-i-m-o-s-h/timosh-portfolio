@@ -1,0 +1,116 @@
+.projects {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+}
+
+.project {
+  --accent-project: var(--accent);
+  position: relative;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  padding: 1.75rem 1.5rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color 0.45s var(--ease-out);
+}
+
+.project:hover {
+  border-color: color-mix(in srgb, var(--accent-project) 45%, transparent);
+}
+
+/* Pointer-tracked wash, tinted per project. */
+.project::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    300px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent-project) 18%, transparent),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+}
+
+.project:hover::before {
+  opacity: 1;
+}
+
+/* A bloom anchored to the top corner, revealed on hover. */
+.project__glow {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: -55%;
+  inset-inline-end: -35%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: var(--r-full);
+  background: var(--accent-project);
+  filter: blur(70px);
+  opacity: 0.12;
+  transition:
+    opacity 0.55s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.project:hover .project__glow {
+  opacity: 0.28;
+  transform: translate3d(-8%, 10%, 0) scale(1.15);
+}
+
+.project__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project__num {
+  color: var(--accent-project);
+}
+
+.project__kind {
+  color: var(--ink-faint);
+}
+
+.project__name {
+  font-size: var(--t-xl);
+  letter-spacing: -0.035em;
+}
+
+.project__blurb {
+  font-size: var(--t-sm);
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.project__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.project__stack li {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--ink-mute);
+}
+
+.project__stack li:not(:last-child)::after {
+  content: ' /';
+  color: var(--ink-faint);
+}

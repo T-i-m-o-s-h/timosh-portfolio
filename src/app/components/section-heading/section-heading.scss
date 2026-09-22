@@ -1,0 +1,21 @@
+.heading {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 62ch;
+  margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+}
+
+.heading__title {
+  font-size: var(--t-2xl);
+  background: linear-gradient(170deg, var(--ink) 45%, var(--ink-mute));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heading__lede {
+  max-width: 52ch;
+  font-size: var(--t-lg);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}

@@ -1,0 +1,52 @@
+<section class="section" id="skills">
+  <div class="shell">
+    <app-section-heading
+      index="03"
+      label="Skills"
+      title="The toolkit, grouped by what it actually does."
+      lede="Picked up in the order the work demanded, not the order a syllabus would suggest." />
+
+    <div class="grid">
+      @for (group of groups; track group.label; let i = $index) {
+        <article class="card" appSpotlight [appReveal]="i * 90">
+          <div class="card__top">
+            <span class="card__index">0{{ i + 1 }}</span>
+            <h3 class="card__title">{{ group.label }}</h3>
+            <p class="card__hint">{{ group.hint }}</p>
+          </div>
+          <ul class="card__items">
+            @for (item of group.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      @for (item of marquee; track $index) {
+        <span class="marquee__item">{{ item }}</span>
+        <span class="marquee__dot">◆</span>
+      }
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="certs" appReveal>
+      <h3 class="certs__title">Certifications</h3>
+      <ul class="certs__list">
+        @for (cert of certifications; track cert) {
+          <li class="cert">
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true">
+              <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>{{ cert }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

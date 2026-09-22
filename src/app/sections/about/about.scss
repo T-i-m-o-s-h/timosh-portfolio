@@ -1,0 +1,166 @@
+.about {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.about__body {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.about__para {
+  max-width: 62ch;
+  font-size: var(--t-lg);
+  line-height: 1.68;
+  color: var(--ink-soft);
+}
+
+.about__para:first-child {
+  color: var(--ink);
+}
+
+/* ---- stats ---- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.25rem;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.stat {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1.4rem 1.25rem;
+  background: var(--bg-elev);
+  transition: background-color 0.4s var(--ease-out);
+}
+
+.stat:hover {
+  background: var(--bg-card-hover);
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(120deg, var(--accent-2), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat__label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+
+/* ---- side panels ---- */
+.about__side {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.panel {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+}
+
+.panel__title {
+  margin-bottom: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.panel__list {
+  display: grid;
+  gap: 1.15rem;
+}
+
+/* ---- education ---- */
+.edu {
+  display: grid;
+  gap: 0.2rem;
+  padding-inline-start: 0.9rem;
+  border-inline-start: 1px solid var(--line-strong);
+}
+
+.edu__period {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--accent-2);
+}
+
+.edu__degree {
+  font-size: var(--t-sm);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.edu__place {
+  font-size: var(--t-xs);
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+
+/* ---- languages ---- */
+.lang {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.lang__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lang__name {
+  font-size: var(--t-sm);
+}
+
+.lang__level {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--ink-mute);
+}
+
+.lang__bar {
+  height: 2px;
+  background: var(--line);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+
+.lang__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+@media (min-width: 860px) {
+  .about {
+    grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

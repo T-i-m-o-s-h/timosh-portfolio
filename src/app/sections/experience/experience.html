@@ -1,0 +1,60 @@
+<section class="section" id="experience">
+  <div class="shell">
+    <app-section-heading
+      index="02"
+      label="Experience"
+      title="Where the work happened."
+      lede="From a CISCO internship to delivering a client portal alone — each role added a stack I didn't have before." />
+
+    <ol class="timeline">
+      @for (role of roles; track role.company + role.period; let i = $index) {
+        <li class="entry" [class.is-open]="open() === i" [class.is-current]="role.current"
+            [appReveal]="i * 70">
+          <div class="entry__marker" aria-hidden="true">
+            <span class="entry__dot"></span>
+          </div>
+
+          <button class="entry__head" type="button" (click)="toggle(i)"
+                  [attr.aria-expanded]="open() === i" [attr.aria-controls]="'role-' + i">
+            <div class="entry__titles">
+              <h3 class="entry__role">{{ role.role }}</h3>
+              <p class="entry__company">
+                <span>{{ role.company }}</span>
+                <span class="entry__sep" aria-hidden="true">·</span>
+                <span class="entry__location">{{ role.location }}</span>
+              </p>
+            </div>
+
+            <div class="entry__aside">
+              <span class="entry__period">{{ role.period }}</span>
+              @if (role.current) {
+                <span class="entry__badge">Now</span>
+              }
+              <span class="entry__chevron" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+                  <path d="M4 6.5L8 10.5L12 6.5" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+          </button>
+
+          <div class="entry__panel" [id]="'role-' + i" [attr.inert]="open() === i ? null : ''">
+            <div class="entry__panel-inner">
+              <ul class="entry__points">
+                @for (point of role.highlights; track $index) {
+                  <li>{{ point }}</li>
+                }
+              </ul>
+              <ul class="entry__stack">
+                @for (tech of role.stack; track tech) {
+                  <li>{{ tech }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

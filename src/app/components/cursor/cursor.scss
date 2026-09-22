@@ -1,0 +1,78 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+}
+
+/* Only a real mouse gets a custom cursor. */
+@media (hover: hover) and (pointer: fine) {
+  :host {
+    display: block;
+  }
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--r-full);
+  pointer-events: none;
+}
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--accent-2);
+  box-shadow: 0 0 12px var(--accent-2);
+}
+
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line-strong);
+  backdrop-filter: invert(1) grayscale(1);
+  transition:
+    width 0.35s var(--ease-spring),
+    height 0.35s var(--ease-spring),
+    border-color 0.35s var(--ease-out),
+    background-color 0.35s var(--ease-out);
+}
+
+.cursor-ring.is-hover {
+  width: 56px;
+  height: 56px;
+  border-color: var(--accent);
+  background: rgba(124, 92, 255, 0.1);
+}
+
+.cursor-ring.has-label {
+  width: 86px;
+  height: 86px;
+  background: var(--accent);
+  border-color: transparent;
+  backdrop-filter: none;
+}
+
+.cursor-ring.is-down {
+  width: 24px;
+  height: 24px;
+}
+
+.cursor-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease-out);
+}
+
+.cursor-ring.has-label .cursor-label {
+  opacity: 1;
+}

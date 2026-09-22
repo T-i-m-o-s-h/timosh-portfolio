@@ -1,0 +1,32 @@
+<section class="section" id="projects">
+  <div class="shell">
+    <app-section-heading
+      index="04"
+      label="Projects"
+      title="Things built to answer a question."
+      lede="Mostly machine learning and systems work from the AI/ML degree — each one solving a problem I wanted to understand properly." />
+
+    <div class="projects">
+      @for (project of projects; track project.name; let i = $index) {
+        <article class="project" appSpotlight appTilt [max]="5" [appReveal]="i * 80"
+                 [style.--accent-project]="project.accent">
+          <div class="project__head">
+            <span class="project__num">{{ number(i) }}</span>
+            <span class="project__kind">{{ project.kind }}</span>
+          </div>
+
+          <h3 class="project__name">{{ project.name }}</h3>
+          <p class="project__blurb">{{ project.blurb }}</p>
+
+          <ul class="project__stack">
+            @for (tech of project.stack; track tech) {
+              <li>{{ tech }}</li>
+            }
+          </ul>
+
+          <span class="project__glow" aria-hidden="true"></span>
+        </article>
+      }
+    </div>
+  </div>
+</section>

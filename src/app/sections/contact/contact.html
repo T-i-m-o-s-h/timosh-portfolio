@@ -1,0 +1,63 @@
+<section class="section contact" id="contact">
+  <div class="shell">
+    <div class="contact__lead">
+      <span class="eyebrow" appReveal>05 — Contact</span>
+      <h2 class="contact__title" [appReveal]="80">
+        Let's build<br />
+        <span class="contact__title-accent">something good.</span>
+      </h2>
+      <p class="contact__lede" [appReveal]="160">
+        I'm open to full stack and frontend roles, and happy to talk through a problem
+        before either of us commits to anything.
+      </p>
+    </div>
+
+    <a class="mailto" [href]="'mailto:' + profile.email" appMagnetic [strength]="10"
+       [appReveal]="220" data-cursor="Write">
+      <span class="mailto__label">Send a message</span>
+      <span class="mailto__value">{{ profile.email }}</span>
+      <span class="mailto__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+          <path d="M5 19L19 5M19 5H9M19 5v10" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+    </a>
+
+    <ul class="channels" [appReveal]="260">
+      <li>
+        <button type="button" class="channel" (click)="copyEmail()"
+                [attr.data-cursor]="copied() ? 'Copied' : 'Copy'">
+          <span class="channel__key">Email</span>
+          <span class="channel__val">{{ copied() ? 'Copied to clipboard' : profile.email }}</span>
+        </button>
+      </li>
+      <li>
+        <a class="channel" [href]="'tel:' + tel">
+          <span class="channel__key">Phone</span>
+          <span class="channel__val">{{ profile.phone }}</span>
+        </a>
+      </li>
+      <li>
+        <a class="channel" [href]="profile.linkedin" target="_blank" rel="noopener noreferrer"
+           data-cursor="Open">
+          <span class="channel__key">LinkedIn</span>
+          <span class="channel__val">timosh-r-r</span>
+        </a>
+      </li>
+      <li>
+        <a class="channel" [href]="profile.github" target="_blank" rel="noopener noreferrer"
+           data-cursor="Open">
+          <span class="channel__key">GitHub</span>
+          <span class="channel__val">T-i-m-o-s-h</span>
+        </a>
+      </li>
+    </ul>
+
+    <footer class="foot">
+      <span>© {{ year }} {{ profile.name }}</span>
+      <span class="foot__mid">{{ profile.location }}</span>
+      <span class="foot__built">Angular 20 · WebGL · Vercel</span>
+    </footer>
+  </div>
+</section>

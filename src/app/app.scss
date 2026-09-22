@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.skip {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 9997;
+  padding: 0.6rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--accent);
+  color: #fff;
+  font-size: var(--t-sm);
+  transform: translateY(-160%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.skip:focus-visible {
+  transform: none;
+}
