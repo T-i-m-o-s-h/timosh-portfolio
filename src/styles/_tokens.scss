@@ -65,12 +65,21 @@
   --t-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
   --t-xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
   --t-2xl: clamp(2rem, 1.5rem + 2.4vw, 3.5rem);
-  --t-3xl: clamp(2.75rem, 1.6rem + 5.4vw, 7rem);
-  --t-hero: clamp(3.25rem, 1rem + 11vw, 11rem);
+  /* Display size, same rem-floor problem as --t-hero. 14vw sits above what
+     the clamp produces at a 16px root, so normal rendering is unchanged. */
+  --t-3xl: min(clamp(2.75rem, 1.6rem + 5.4vw, 7rem), 14vw);
+  /* The rem floor is what overflows: at a 32px root it demands 104px of type
+     on a 390px screen. Capping by vw lets the floor grow with the user's font
+     size only as far as the viewport can actually hold. 16.5vw is above what
+     the clamp already produces at a 16px root, so normal rendering is
+     untouched. */
+  --t-hero: min(clamp(3.25rem, 1rem + 11vw, 11rem), 16.5vw);
 
   /* ---- layout ---- */
   --shell: 1240px;
-  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  /* Same problem: a 1.25rem floor is 40px per side at a 32px root, which eats
+     a quarter of a small screen before any content is laid out. */
+  --gutter: clamp(min(1.25rem, 6vw), 4vw, 4.5rem);
   --section-y: clamp(6rem, 12vh, 11rem);
 
   /* ---- motion ---- */

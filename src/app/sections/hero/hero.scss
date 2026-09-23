@@ -18,6 +18,9 @@
   align-items: center;
   gap: 0.6rem;
   justify-self: start;
+  /* Hugs its content, so without this it simply grows past the viewport once
+     the root font size is large. Bounded, the label wraps instead. */
+  max-width: 100%;
   padding: 0.4rem 0.95rem 0.4rem 0.8rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--r-full);
@@ -136,6 +139,10 @@
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
+  max-width: 100%;
+  /* The email label has no ordinary break point, so allow one anywhere rather
+     than let a single button push the page wider than the screen. */
+  overflow-wrap: anywhere;
 }
 
 /* Wipe fills from the bottom on hover. */

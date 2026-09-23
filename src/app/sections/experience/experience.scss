@@ -15,7 +15,9 @@
 
 .entry {
   position: relative;
-  padding-inline-start: 2.1rem;
+  /* Spacing, unlike type, can be bounded by the viewport without working
+     against someone who has raised their font size. */
+  padding-inline-start: min(2.1rem, 8vw);
   border-bottom: 1px solid var(--line);
 }
 
@@ -110,7 +112,12 @@
   font-size: var(--t-xs);
   letter-spacing: 0.08em;
   color: var(--ink-mute);
-  white-space: nowrap;
+}
+
+@media (min-width: 720px) {
+  .entry__period {
+    white-space: nowrap;
+  }
 }
 
 .entry__badge {
@@ -207,7 +214,7 @@
 
 @media (min-width: 720px) {
   .entry {
-    padding-inline-start: 3rem;
+    padding-inline-start: min(3rem, 8vw);
   }
 
   .entry__head {

@@ -4,6 +4,7 @@
 
 .contact__lead {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.2rem;
   max-width: 44ch;
   margin-bottom: clamp(2.5rem, 6vh, 4rem);
@@ -12,6 +13,7 @@
 .contact__title {
   font-size: var(--t-3xl);
   line-height: 0.95;
+  overflow-wrap: anywhere;
 }
 
 .contact__title-accent {

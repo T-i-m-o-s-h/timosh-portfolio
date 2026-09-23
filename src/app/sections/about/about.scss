@@ -1,11 +1,16 @@
 .about {
   display: grid;
+  /* An implicit auto column cannot shrink below its item's min-content, so at
+     a large root font size the stat labels pushed this column wider than the
+     page. minmax(0, 1fr) lets it track the container instead. */
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(2.5rem, 5vw, 4rem);
 }
 
 .about__body {
   display: grid;
   gap: 1.5rem;
+  min-width: 0;
 }
 
 .about__para {
@@ -37,7 +42,8 @@
   /* Without this the auto rows stretch to fill the cell, so a one-line label
      sits lower than a two-line one beside it. */
   align-content: start;
-  padding: 1.4rem 1.25rem;
+  min-width: 0;
+  padding: 1.4rem min(1.25rem, 5vw);
   background: var(--bg-elev);
   transition: background-color 0.4s var(--ease-out);
 }
@@ -63,6 +69,8 @@
   font-size: var(--t-xs);
   letter-spacing: 0.1em;
   color: var(--ink-mute);
+  /* A single long word would otherwise set the cell's minimum width. */
+  overflow-wrap: anywhere;
 }
 
 /* ---- side panels ---- */
@@ -70,10 +78,12 @@
   display: grid;
   gap: 1rem;
   align-content: start;
+  min-width: 0;
 }
 
 .panel {
-  padding: 1.5rem;
+  min-width: 0;
+  padding: 1.5rem min(1.5rem, 5vw);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: var(--bg-card);
@@ -99,6 +109,7 @@
 .edu {
   display: grid;
   gap: 0.2rem;
+  min-width: 0;
   padding-inline-start: 0.9rem;
   border-inline-start: 1px solid var(--line-strong);
 }
@@ -113,12 +124,14 @@
   font-size: var(--t-sm);
   font-weight: 500;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .edu__place {
   font-size: var(--t-xs);
   color: var(--ink-mute);
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 /* ---- languages ---- */

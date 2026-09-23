@@ -56,6 +56,26 @@ p {
   text-wrap: pretty;
 }
 
+/**
+ * A long word sets its container's min-content width, and a grid or flex
+ * track cannot shrink below that, so at large root font sizes a single word
+ * like "Recommendation" was widening the whole page. `anywhere` only breaks
+ * when the word genuinely cannot fit, unlike `break-word` it also lowers the
+ * intrinsic minimum, which is the part that matters here.
+ */
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+a,
+button,
+figcaption,
+blockquote {
+  overflow-wrap: anywhere;
+}
+
 a {
   color: inherit;
   text-decoration: none;
