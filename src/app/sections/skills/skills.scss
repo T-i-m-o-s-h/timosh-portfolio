@@ -116,7 +116,12 @@
 
 .marquee__item {
   font-family: var(--font-display);
-  font-size: var(--t-xl);
+  /* The outline stroke is decorative and sits at 3:1, which WCAG only allows
+     for large text (24px). var(--t-xl) lands on exactly 24px at a 320px
+     viewport, and lower still for anyone whose browser default is under 16px.
+     The px floor guarantees the threshold; the rem term inside --t-xl still
+     lets it grow for a visitor who has set a larger default. */
+  font-size: max(26px, var(--t-xl));
   font-weight: 500;
   letter-spacing: -0.035em;
   color: transparent;
