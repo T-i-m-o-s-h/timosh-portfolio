@@ -72,8 +72,11 @@ void main() {
   // the clouds read as soft colour rather than a grey wash.
   vec3 tintDark =
       violet * body * 0.30 + teal * core * 0.20 + violet * halo * 0.10 + teal * halo * core * 0.22;
+  // Subtracting a colour from white leaves its complement, so subtracting
+  // violet would give yellow. Subtract (1 - colour) instead: what survives is
+  // the colour itself, softened toward the page ground.
   vec3 tintLight =
-      violet * body * 0.30 + teal * core * 0.24 + violet * halo * 0.12;
+      (1.0 - violet) * body * 0.26 + (1.0 - teal) * core * 0.20 + (1.0 - violet) * halo * 0.10;
 
   // Everything that shapes the nebula attenuates the tint rather than the
   // final colour, so the vignette and the calm left edge behave correctly in
@@ -106,7 +109,10 @@ uniform float u_time;
 uniform vec2 u_res;
 uniform vec2 u_mouse;
 uniform float u_dpr;
-uniform float u_light;
+/* Must carry the same precision as the fragment declaration below: GLSL ES
+   refuses to link a uniform whose precision differs between stages, and a
+   vertex shader defaults to highp while that fragment shader is mediump. */
+uniform mediump float u_light;
 
 varying float v_alpha;
 varying float v_depth;
@@ -141,7 +147,7 @@ void main() {
 export const PARTICLE_FRAG = `
 precision mediump float;
 
-uniform float u_light;
+uniform mediump float u_light;
 
 varying float v_alpha;
 varying float v_depth;

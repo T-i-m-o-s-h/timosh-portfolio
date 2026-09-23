@@ -118,7 +118,10 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
         'u_dpr',
         'u_light',
       ]);
-    } catch {
+    } catch (err) {
+      // Without this the page just quietly shows the CSS fallback, which is
+      // close enough to the real thing to hide a broken shader entirely.
+      console.error('[background] WebGL setup failed, using CSS fallback:', err);
       this.failed.set(true);
       this.gl = null;
       return;
