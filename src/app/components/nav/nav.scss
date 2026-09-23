@@ -47,6 +47,9 @@
   align-items: center;
   gap: 0.75rem;
   cursor: pointer;
+  /* Grow the touch target without moving anything around it. */
+  padding-block: 0.45rem;
+  margin-block: -0.45rem;
 }
 
 .nav__mark {
@@ -243,10 +246,19 @@
 
 .sheet__foot {
   display: grid;
-  gap: 0.4rem;
   font-family: var(--font-mono);
   font-size: var(--t-sm);
   color: var(--ink-mute);
+}
+
+/* These were 22px tall, well under a comfortable thumb target. */
+.sheet__foot a {
+  padding-block: 0.7rem;
+  transition: color 0.3s var(--ease-out);
+}
+
+.sheet__foot a:active {
+  color: var(--accent-2);
 }
 
 @media (min-width: 880px) {

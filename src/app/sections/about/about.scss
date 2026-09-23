@@ -34,6 +34,9 @@
 .stat {
   display: grid;
   gap: 0.3rem;
+  /* Without this the auto rows stretch to fill the cell, so a one-line label
+     sits lower than a two-line one beside it. */
+  align-content: start;
   padding: 1.4rem 1.25rem;
   background: var(--bg-elev);
   transition: background-color 0.4s var(--ease-out);
