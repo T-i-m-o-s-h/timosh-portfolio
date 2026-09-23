@@ -174,7 +174,7 @@
   font-size: var(--t-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-label);
 }
 
 .channel__val {
@@ -197,7 +197,7 @@
   font-family: var(--font-mono);
   font-size: var(--t-xs);
   letter-spacing: 0.06em;
-  color: var(--ink-faint);
+  color: var(--ink-label);
 }
 
 @media (min-width: 720px) {

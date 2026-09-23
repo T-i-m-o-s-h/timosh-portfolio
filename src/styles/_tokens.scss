@@ -20,7 +20,11 @@
   --ink: #f2f3f7;
   --ink-soft: #a7abbb;
   --ink-mute: #787d92;
-  --ink-faint: #3d4152;
+  /* Small recessive labels. Must clear 4.5:1 like any other body text. */
+  --ink-label: #767b93;
+  /* Decorative only: outline strokes, dots, scrollbar. The outline type is
+     large, so it answers to the 3:1 threshold rather than 4.5:1. */
+  --ink-faint: #5a5f73;
 
   /* Text drawn on top of an --ink-filled surface, and on an accent fill. */
   --on-ink: #05060a;
@@ -102,7 +106,8 @@
   --ink: #0d0f16;
   --ink-soft: #454a5c;
   --ink-mute: #646a7e;
-  --ink-faint: #9096a6;
+  --ink-label: #676d80;
+  --ink-faint: #82889a;
 
   --on-ink: #ffffff;
   --on-accent: #ffffff;

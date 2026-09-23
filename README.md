@@ -49,6 +49,12 @@ work inside a component's SCSS. Angular's emulated encapsulation prefixes the
 leading `:root` with the component's content attribute, producing a selector
 that can never match `<html>`. Use `:host-context([data-theme='light'])`.
 
+**Ink tokens.** `--ink` / `--ink-soft` / `--ink-mute` / `--ink-label` are text
+and all clear WCAG AA (4.5:1) in both themes. `--ink-faint` is decorative only
+— outline strokes, timeline dots, the scrollbar — and is set against the 3:1
+large-text threshold, since the outline type it draws is 174px. Don't use
+`--ink-faint` for small text.
+
 **Content** lives in one typed module, `src/app/core/resume.data.ts`. Editing the
 site means editing that file — nothing is hardcoded into templates.
 
