@@ -21,7 +21,7 @@
   padding: 0.4rem 0.95rem 0.4rem 0.8rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--r-full);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-card);
   backdrop-filter: blur(10px);
   font-family: var(--font-mono);
   font-size: var(--t-xs);
@@ -154,13 +154,13 @@
 }
 
 .btn:hover {
-  color: #05060a;
+  color: var(--on-ink);
   border-color: transparent;
 }
 
 .btn--solid {
   --btn-bg: var(--ink);
-  --btn-fg: #05060a;
+  --btn-fg: var(--on-ink);
   border-color: var(--ink);
   font-weight: 500;
 }

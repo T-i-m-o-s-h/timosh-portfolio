@@ -28,7 +28,7 @@
 }
 
 .nav.is-condensed {
-  background: rgba(5, 6, 10, 0.72);
+  background: var(--scrim);
   backdrop-filter: blur(18px) saturate(140%);
   border-bottom-color: var(--line);
 }
@@ -161,9 +161,63 @@
 }
 
 .nav__cta:hover {
-  color: #05060a;
+  color: var(--on-ink);
   background: var(--ink);
   border-color: var(--ink);
+}
+
+/* ---- theme toggle ---- */
+.theme {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-full);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition:
+    color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out);
+}
+
+.theme:hover {
+  color: var(--ink);
+  border-color: var(--accent-2);
+  background: var(--bg-card-hover);
+}
+
+/* Both icons occupy the same cell so they can cross-fade in place. */
+.theme__icons {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+}
+
+.theme__sun,
+.theme__moon {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.45s var(--ease-spring);
+}
+
+/* Dark theme: offer the sun. Light theme: offer the moon. */
+.theme__moon {
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.6);
+}
+
+:host-context([data-theme='light']) .theme__sun {
+  opacity: 0;
+  transform: rotate(70deg) scale(0.6);
+}
+
+:host-context([data-theme='light']) .theme__moon {
+  opacity: 1;
+  transform: none;
 }
 
 .nav__burger {
@@ -204,7 +258,7 @@
   justify-content: center;
   gap: 2rem;
   padding: 6rem var(--gutter) 3rem;
-  background: rgba(5, 6, 10, 0.94);
+  background: var(--scrim-solid);
   backdrop-filter: blur(22px);
   opacity: 0;
   pointer-events: none;

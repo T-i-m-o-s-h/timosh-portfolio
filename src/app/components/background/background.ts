@@ -6,6 +6,7 @@ import {
   ElementRef,
   NgZone,
   OnDestroy,
+  effect,
   inject,
   signal,
   viewChild,
@@ -13,6 +14,7 @@ import {
 import { MotionService } from '../../core/motion';
 import { PointerService } from '../../core/pointer.service';
 import { ScrollService } from '../../core/scroll.service';
+import { ThemeService } from '../../core/theme.service';
 import { NEBULA_FRAG, PARTICLE_FRAG, PARTICLE_VERT, QUAD_VERT } from './nebula.glsl';
 
 /**
@@ -47,6 +49,7 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
   private readonly pointer = inject(PointerService);
   private readonly scroll = inject(ScrollService);
   private readonly motion = inject(MotionService);
+  private readonly themes = inject(ThemeService);
 
   readonly ready = signal(false);
   readonly failed = signal(false);
@@ -64,6 +67,17 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
   /** Eased pointer position in 0..1 space, y flipped for GL. */
   private mx = 0.5;
   private my = 0.5;
+
+  constructor() {
+    // Under reduced motion only one frame is ever drawn, so a theme change
+    // has to explicitly redraw it or the canvas would keep the old palette.
+    effect(() => {
+      this.themes.theme();
+      if (this.gl && this.motion.reduced()) {
+        this.zone.runOutsideAngular(() => this.render(performance.now() - this.startedAt));
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => this.init());
@@ -95,12 +109,14 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
         'u_time',
         'u_mouse',
         'u_scroll',
+        'u_light',
       ]);
       this.particles = this.buildPass(gl, PARTICLE_VERT, PARTICLE_FRAG, [
         'u_res',
         'u_time',
         'u_mouse',
         'u_dpr',
+        'u_light',
       ]);
     } catch {
       this.failed.set(true);
@@ -246,7 +262,10 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
     this.mx += (tx - this.mx) * 0.045;
     this.my += (ty - this.my) * 0.045;
 
-    gl.clearColor(0.019, 0.022, 0.038, 1);
+    const light = this.themes.theme() === 'light' ? 1 : 0;
+
+    if (light) gl.clearColor(0.957, 0.961, 0.973, 1);
+    else gl.clearColor(0.019, 0.022, 0.038, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // --- pass 1: nebula, opaque ---
@@ -256,6 +275,7 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
     gl.uniform1f(nebula.uniforms['u_time'], time);
     gl.uniform2f(nebula.uniforms['u_mouse'], this.mx, this.my);
     gl.uniform1f(nebula.uniforms['u_scroll'], this.scroll.progress());
+    gl.uniform1f(nebula.uniforms['u_light'], light);
 
     const quadLoc = gl.getAttribLocation(nebula.program, 'a_pos');
     gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
@@ -263,13 +283,17 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
     gl.vertexAttribPointer(quadLoc, 2, gl.FLOAT, false, 0, 0);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
-    // --- pass 2: particles, additive over the nebula ---
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+    // --- pass 2: particles over the nebula ---
+    // Additive glows would only wash out to white on a pale ground, so light
+    // draws them as dark specks with ordinary alpha blending instead.
+    if (light) gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    else gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
     gl.useProgram(particles.program);
     gl.uniform2f(particles.uniforms['u_res'], canvas.width, canvas.height);
     gl.uniform1f(particles.uniforms['u_time'], time);
     gl.uniform2f(particles.uniforms['u_mouse'], this.mx, this.my);
     gl.uniform1f(particles.uniforms['u_dpr'], this.dpr);
+    gl.uniform1f(particles.uniforms['u_light'], light);
 
     const seedLoc = gl.getAttribLocation(particles.program, 'a_seed');
     gl.bindBuffer(gl.ARRAY_BUFFER, this.seedBuffer);

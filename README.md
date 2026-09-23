@@ -36,6 +36,19 @@ pointer and scroll traffic never triggers change detection.
 | `appCountUp` | Eased number count-up the first time a stat is seen |
 | `appScramble` | Decodes section labels out of random glyphs |
 
+**Theming.** Dark is the default because the site is built around the nebula;
+the toggle in the nav switches to light and the choice is remembered. An inline
+script in `index.html` stamps `data-theme` on `<html>` before the first paint,
+so a returning light-mode visitor never sees a dark flash. Light is not an
+inversion: the accents are darkened to hold contrast on a pale ground, cards
+become frosted white, the grain multiplies instead of overlaying, and the
+shader subtracts a tint from near-white rather than adding glow to near-black.
+
+Note for future component styles: `:root[data-theme='light'] .thing` does *not*
+work inside a component's SCSS. Angular's emulated encapsulation prefixes the
+leading `:root` with the component's content attribute, producing a selector
+that can never match `<html>`. Use `:host-context([data-theme='light'])`.
+
 **Content** lives in one typed module, `src/app/core/resume.data.ts`. Editing the
 site means editing that file — nothing is hardcoded into templates.
 

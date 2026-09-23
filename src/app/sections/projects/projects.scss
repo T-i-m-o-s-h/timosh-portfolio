@@ -87,6 +87,13 @@
   color: var(--accent-project);
 }
 
+/* The per-project accents are tuned for a dark ground; on a pale one the
+   teal and blue drop to roughly 1.7:1. Darkening only the text keeps each
+   project identifiable without touching its glow. */
+:host-context([data-theme='light']) .project__num {
+  color: color-mix(in srgb, var(--accent-project) 48%, #000);
+}
+
 .project__kind {
   color: var(--ink-faint);
 }

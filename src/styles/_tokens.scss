@@ -1,25 +1,53 @@
+/**
+ * Dark is the default because the site is designed around the nebula.
+ * `data-theme` is stamped on <html> before first paint by the inline script
+ * in index.html, so there is no flash on load.
+ */
 :root {
   /* ---- surface ---- */
   --bg: #05060a;
   --bg-elev: #0a0c13;
   --bg-card: rgba(255, 255, 255, 0.025);
   --bg-card-hover: rgba(255, 255, 255, 0.045);
+  --bg-chip: rgba(255, 255, 255, 0.02);
+
+  /* Translucent layers over the canvas. */
+  --scrim: rgba(5, 6, 10, 0.72);
+  --scrim-solid: rgba(5, 6, 10, 0.94);
+  --glass: rgba(255, 255, 255, 0.06);
 
   /* ---- ink ---- */
   --ink: #f2f3f7;
   --ink-soft: #a7abbb;
-  --ink-mute: #6d7285;
+  --ink-mute: #787d92;
   --ink-faint: #3d4152;
+
+  /* Text drawn on top of an --ink-filled surface, and on an accent fill. */
+  --on-ink: #05060a;
+  --on-accent: #ffffff;
 
   /* ---- accent ---- */
   --accent: #7c5cff;
   --accent-2: #00d9c0;
   --accent-3: #ff7847;
-  --accent-glow: rgba(124, 92, 255, 0.4);
+  --accent-ink: #b7a5ff;
+
+  /* Accent washes. Kept as tokens because light needs more opacity to read. */
+  --accent-wash: rgba(124, 92, 255, 0.16);
+  --accent-wash-strong: rgba(124, 92, 255, 0.22);
+  --accent-2-wash: rgba(0, 217, 192, 0.16);
+  --accent-ring: rgba(0, 217, 192, 0.15);
+  --accent-ring-violet: rgba(124, 92, 255, 0.18);
+  --accent-border: rgba(124, 92, 255, 0.45);
+  --accent-fill: rgba(124, 92, 255, 0.12);
 
   /* ---- line ---- */
   --line: rgba(255, 255, 255, 0.07);
   --line-strong: rgba(255, 255, 255, 0.14);
+
+  /* ---- grain ---- */
+  --grain-blend: overlay;
+  --grain-opacity: 0.16;
 
   /* ---- type ---- */
   --font-display: 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif;
@@ -53,4 +81,52 @@
   --r-full: 999px;
 
   color-scheme: dark;
+}
+
+/**
+ * Light is not an inversion. The accents are darkened so they still pass
+ * contrast on a pale ground, the cards become frosted white rather than
+ * translucent black, and the grain multiplies instead of overlaying.
+ */
+:root[data-theme='light'] {
+  --bg: #f4f5f8;
+  --bg-elev: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.66);
+  --bg-card-hover: rgba(255, 255, 255, 0.88);
+  --bg-chip: rgba(13, 15, 22, 0.022);
+
+  --scrim: rgba(244, 245, 248, 0.76);
+  --scrim-solid: rgba(244, 245, 248, 0.97);
+  --glass: rgba(13, 15, 22, 0.05);
+
+  --ink: #0d0f16;
+  --ink-soft: #454a5c;
+  --ink-mute: #646a7e;
+  --ink-faint: #9096a6;
+
+  --on-ink: #ffffff;
+  --on-accent: #ffffff;
+
+  /* Darkened so accent-on-background still reads: the dark theme's #00d9c0
+     sits at about 1.7:1 on a pale ground. */
+  --accent: #5b3fd6;
+  --accent-2: #00786d;
+  --accent-3: #c2451a;
+  --accent-ink: #4a2fc2;
+
+  --accent-wash: rgba(91, 63, 214, 0.12);
+  --accent-wash-strong: rgba(91, 63, 214, 0.16);
+  --accent-2-wash: rgba(0, 120, 109, 0.12);
+  --accent-ring: rgba(0, 120, 109, 0.16);
+  --accent-ring-violet: rgba(91, 63, 214, 0.16);
+  --accent-border: rgba(91, 63, 214, 0.35);
+  --accent-fill: rgba(91, 63, 214, 0.1);
+
+  --line: rgba(13, 15, 22, 0.1);
+  --line-strong: rgba(13, 15, 22, 0.2);
+
+  --grain-blend: multiply;
+  --grain-opacity: 0.05;
+
+  color-scheme: light;
 }

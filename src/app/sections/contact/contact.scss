@@ -47,7 +47,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(115deg, rgba(124, 92, 255, 0.22), rgba(0, 217, 192, 0.16));
+  background: linear-gradient(115deg, var(--accent-wash-strong), var(--accent-2-wash));
   opacity: 0;
   transition: opacity 0.5s var(--ease-out);
 }

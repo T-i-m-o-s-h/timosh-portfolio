@@ -11,6 +11,29 @@
       content="Full stack developer building end-to-end products with Angular, .NET, React and Python. Four years across India, Jordan and Kenya." />
     <meta name="author" content="Timosh R R" />
     <meta name="theme-color" content="#05060a" />
+
+    <!--
+      Stamp the theme before the first paint, otherwise a visitor who picked
+      light would see a dark flash on every load. Dark is the default: the
+      site is designed around the nebula, so a first-time visitor gets that
+      regardless of their system setting, and the toggle is remembered after.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'light') {
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute('content', '#f4f5f8');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     <link rel="canonical" href="https://timosh-portfolio.vercel.app/" />
 
     <meta property="og:type" content="website" />

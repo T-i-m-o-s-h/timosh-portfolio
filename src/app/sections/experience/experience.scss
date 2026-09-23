@@ -47,13 +47,13 @@
 .entry.is-open .entry__dot,
 .entry:hover .entry__dot {
   background: var(--accent-2);
-  box-shadow: 0 0 0 4px rgba(0, 217, 192, 0.14);
+  box-shadow: 0 0 0 4px var(--accent-ring);
   transform: scale(1.15);
 }
 
 .entry.is-current .entry__dot {
   background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.18);
+  box-shadow: 0 0 0 4px var(--accent-ring-violet);
 }
 
 /* ---- header row ---- */
@@ -115,14 +115,14 @@
 
 .entry__badge {
   padding: 0.15rem 0.5rem;
-  border: 1px solid rgba(124, 92, 255, 0.45);
+  border: 1px solid var(--accent-border);
   border-radius: var(--r-full);
-  background: rgba(124, 92, 255, 0.12);
+  background: var(--accent-fill);
   font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b7a5ff;
+  color: var(--accent-ink);
 }
 
 .entry__chevron {

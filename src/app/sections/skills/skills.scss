@@ -30,7 +30,7 @@
   z-index: -1;
   background: radial-gradient(
     260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(124, 92, 255, 0.16),
+    var(--accent-wash),
     transparent 65%
   );
   opacity: 0;
@@ -78,7 +78,7 @@
   padding: 0.3rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-chip);
   font-family: var(--font-mono);
   font-size: var(--t-xs);
   color: var(--ink-soft);

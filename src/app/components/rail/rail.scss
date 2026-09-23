@@ -33,7 +33,7 @@
 .rail__dot.is-active {
   background: var(--accent-2);
   transform: scale(1.35);
-  box-shadow: 0 0 0 4px rgba(0, 217, 192, 0.15);
+  box-shadow: 0 0 0 4px var(--accent-ring);
 }
 
 .rail__tip {

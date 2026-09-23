@@ -82,7 +82,7 @@ ol {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 :focus-visible {

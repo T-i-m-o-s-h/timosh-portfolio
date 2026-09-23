@@ -15,7 +15,7 @@ main {
   padding: 0.6rem 1rem;
   border-radius: var(--r-sm);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   font-size: var(--t-sm);
   transform: translateY(-160%);
   transition: transform 0.3s var(--ease-out);
