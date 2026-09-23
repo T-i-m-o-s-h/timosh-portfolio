@@ -2,7 +2,7 @@ import { DOCUMENT, Injectable, NgZone, inject, signal } from '@angular/core';
 import { NAV_LINKS } from './resume.data';
 
 /**
- * Single source of truth for "where is the page right now" — drives the
+ * Single source of truth for "where is the page right now". Drives the
  * progress bar, the nav's condensed state and the active rail dot.
  */
 @Injectable({ providedIn: 'root' })

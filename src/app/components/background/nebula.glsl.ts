@@ -1,4 +1,4 @@
-/** Shared fullscreen vertex shader — draws one oversized triangle. */
+/** Shared fullscreen vertex shader. Draws one oversized triangle. */
 export const QUAD_VERT = `
 attribute vec2 a_pos;
 void main() {
@@ -18,7 +18,9 @@ uniform vec2 u_mouse;
 uniform float u_scroll;
 
 float hash(vec2 p) {
-  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+  vec3 q = fract(vec3(p.xyx) * vec3(0.1031, 0.1030, 0.0973));
+  q += dot(q, q.yzx + 33.33);
+  return fract((q.x + q.y) * q.z);
 }
 
 float noise(vec2 p) {
@@ -35,7 +37,7 @@ float noise(vec2 p) {
 float fbm(vec2 p) {
   float v = 0.0;
   float a = 0.5;
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 4; i++) {
     v += a * noise(p);
     p = p * 2.03 + vec2(1.7, 9.2);
     a *= 0.5;
@@ -51,11 +53,7 @@ void main() {
   float t = u_time * 0.018;
 
   vec2 q = vec2(fbm(p * 1.5 + t), fbm(p * 1.5 + vec2(5.2, 1.3) - t));
-  vec2 r = vec2(
-    fbm(p * 1.5 + 2.0 * q + vec2(1.7, 9.2) + 0.15 * t),
-    fbm(p * 1.5 + 2.0 * q + vec2(8.3, 2.8) - 0.12 * t)
-  );
-  float f = fbm(p * 1.5 + 2.2 * r);
+  float f = fbm(p * 1.5 + 2.4 * q + vec2(1.7, 9.2) + 0.15 * t);
 
   vec2 m = vec2(u_mouse.x * aspect, u_mouse.y);
   float halo = smoothstep(0.6, 0.0, distance(p, m));
@@ -64,12 +62,14 @@ void main() {
   vec3 violet = vec3(0.34, 0.21, 0.80);
   vec3 teal = vec3(0.00, 0.64, 0.58);
 
-  float body = smoothstep(0.34, 0.95, f);
-  float core = pow(smoothstep(0.52, 1.0, f), 2.0);
+  // One warp pass leaves less fine structure, so tighten these ramps to put
+  // the contrast back. Remapping costs nothing; extra octaves would.
+  float body = smoothstep(0.30, 0.78, f);
+  float core = pow(smoothstep(0.46, 0.92, f), 2.0);
 
   vec3 col = base;
-  col += violet * body * 0.26;
-  col += teal * core * 0.17;
+  col += violet * body * 0.30;
+  col += teal * core * 0.20;
   col += violet * halo * 0.10;
   col += teal * halo * core * 0.22;
 

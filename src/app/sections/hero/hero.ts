@@ -23,7 +23,7 @@ export class HeroComponent {
   protected readonly lineTwo = chars('STACK');
   protected readonly lineThree = chars('DEVELOPER');
 
-  /** Staggered delay in ms — lines cascade, characters inside them ripple. */
+  /** Staggered delay in ms: lines cascade, characters inside them ripple. */
   protected delay(line: number, index: number): string {
     return `${420 + line * 130 + index * 34}ms`;
   }

@@ -5,7 +5,7 @@ export const PROFILE = {
   first: 'Timosh',
   last: 'R R',
   role: 'Full Stack Developer',
-  tagline: 'I build end-to-end products — from the schema up to the last pixel.',
+  tagline: 'I build end-to-end products, from the schema up to the last pixel.',
   location: 'Madurai, Tamil Nadu, India',
   email: 'timoshr.work@gmail.com',
   phone: '+91 75400 43603',
@@ -17,14 +17,14 @@ export const PROFILE = {
 } as const;
 
 export const ABOUT_PARAGRAPHS: readonly string[] = [
-  `I'm a full stack developer with a B.Tech in Artificial Intelligence and Machine Learning, currently building HR and payroll systems at Justo Global. I like the parts of the job most people route around — auth, roles and permissions, the migration that has to run cleanly the first time.`,
-  `My path through this has been unusually wide for four years: shipping Laravel automation for Nike's service tracking in Jordan, a multi-role college portal in Kenya, Django projects at EY, and React Native apps serving 500+ test users. Different stacks, different continents, same instinct — find the manual step someone is repeating and delete it.`,
+  `I'm a full stack developer with a B.Tech in Artificial Intelligence and Machine Learning, currently building HR and payroll systems at Justo Global. I like the parts of the job most people route around: auth, roles and permissions, the migration that has to run cleanly the first time.`,
+  `My path through this has been unusually wide for four years: shipping Laravel automation for Nike's service tracking in Jordan, a multi-role college portal in Kenya, Django projects at EY, and React Native apps serving 500+ test users. Different stacks, different places, same instinct. Find the manual step someone is repeating and delete it.`,
   `Most recently I picked up Angular and .NET from scratch to deliver a client portal solo, end to end. That's the pattern I trust: learn the stack the problem actually needs, then ship it.`,
 ];
 
 export const STATS: readonly Stat[] = [
   { value: 6, suffix: '', label: 'Engineering roles' },
-  { value: 4, suffix: '', label: 'Countries worked with' },
+  { value: 2, suffix: '', label: 'Countries worked abroad' },
   { value: 500, suffix: '+', label: 'Users served' },
   { value: 40, suffix: '%', label: 'Faster deployments' },
 ];
@@ -43,7 +43,7 @@ export const EXPERIENCE: readonly Experience[] = [
     role: 'Full Stack Developer',
     company: 'Justo Global',
     location: 'India',
-    period: 'Jul 2025 — Present',
+    period: 'Jul 2025 – Present',
     start: '2025',
     current: true,
     highlights: [
@@ -56,7 +56,7 @@ export const EXPERIENCE: readonly Experience[] = [
     role: 'Full Stack Developer Intern',
     company: 'Justo Global',
     location: 'India',
-    period: 'Jan 2025 — Jun 2025',
+    period: 'Jan 2025 – Jun 2025',
     start: '2025',
     highlights: [
       'Cut deployment time for the FMPB web app by 40% by automating tests and tightening the CI/CD pipeline.',
@@ -69,7 +69,7 @@ export const EXPERIENCE: readonly Experience[] = [
     role: 'Software Developer Intern',
     company: 'MAS Apparel',
     location: 'Jordan',
-    period: 'Jul 2024 — Sep 2024',
+    period: 'Jul 2024 – Sep 2024',
     start: '2024',
     highlights: [
       "Automated Nike's service tracking system in PHP and Laravel, removing 70% of the manual work.",
@@ -81,7 +81,7 @@ export const EXPERIENCE: readonly Experience[] = [
     role: 'Software Developer',
     company: 'Dedan Kimathi University',
     location: 'Kenya',
-    period: 'May 2024 — Jul 2024',
+    period: 'May 2024 – Jul 2024',
     start: '2024',
     highlights: [
       'Built a college portal with distinct student, faculty and HoD roles, opening access to 100+ users.',
@@ -93,7 +93,7 @@ export const EXPERIENCE: readonly Experience[] = [
     role: 'Full Stack Developer',
     company: 'Ernst & Young Global Ltd.',
     location: 'India',
-    period: 'Jan 2024 — Mar 2024',
+    period: 'Jan 2024 – Mar 2024',
     start: '2024',
     highlights: [
       'Delivered 2 full-stack academic platforms for university clients using Django and PostgreSQL.',
@@ -105,7 +105,7 @@ export const EXPERIENCE: readonly Experience[] = [
     role: 'Programming Intern',
     company: 'CISCO Networking Academy',
     location: 'India',
-    period: 'Apr 2022 — Jun 2022',
+    period: 'Apr 2022 – Jun 2022',
     start: '2022',
     highlights: [
       'Wrote a Python IP address validator that cut network configuration errors by 60%.',
@@ -183,18 +183,18 @@ export const EDUCATION = [
   {
     degree: 'B.Tech, Artificial Intelligence and Machine Learning',
     place: 'Karunya Institute of Technology and Sciences, Coimbatore',
-    period: '2021 — 2025',
+    period: '2021 – 2025',
   },
   {
     degree: 'Higher Secondary Education',
     place: 'S.B.O.A. Matriculation Hr. Sec. School, Madurai',
-    period: '2009 — 2021',
+    period: '2009 – 2021',
   },
 ] as const;
 
 export const CERTIFICATIONS: readonly string[] = [
   'Google IT Automation with Python',
-  'Machine Learning — Coursera',
+  'Machine Learning (Coursera)',
   'Pandas, Data Cleaning & Visualization',
   'NPTEL Technical English for Engineers',
 ];

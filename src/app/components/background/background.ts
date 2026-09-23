@@ -15,8 +15,13 @@ import { PointerService } from '../../core/pointer.service';
 import { ScrollService } from '../../core/scroll.service';
 import { NEBULA_FRAG, PARTICLE_FRAG, PARTICLE_VERT, QUAD_VERT } from './nebula.glsl';
 
-/** Device pixel ratio above this buys nothing visible and costs a lot of fill. */
-const MAX_DPR = 1.75;
+/**
+ * The nebula is low-frequency and the particles are soft glows, so neither
+ * gains anything from a retina backing store, but both cost fill rate for it.
+ * Rendering at CSS pixels and letting the compositor upscale is roughly three
+ * times cheaper on a 2x display and visually indistinguishable.
+ */
+const MAX_DPR = 1;
 
 interface Pass {
   program: WebGLProgram;
@@ -235,7 +240,7 @@ export class BackgroundComponent implements AfterViewInit, OnDestroy {
     const win = this.doc.defaultView!;
     const time = elapsedMs / 1000;
 
-    // Chase the pointer instead of snapping — the halo reads as inertia.
+    // Chase the pointer instead of snapping, so the halo reads as inertia.
     const tx = this.pointer.x() / win.innerWidth;
     const ty = 1 - this.pointer.y() / win.innerHeight;
     this.mx += (tx - this.mx) * 0.045;

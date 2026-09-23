@@ -43,6 +43,7 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
   private ry = 0;
   private enabled = false;
   private live = false;
+  private lastFrame = 0;
 
   ngAfterViewInit(): void {
     if (!this.pointer.fine() || this.motion.reduced()) return;
@@ -88,8 +89,16 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
     }
 
     // The dot is exact; the ring eases toward it for a trailing feel.
-    this.rx += (x - this.rx) * 0.16;
-    this.ry += (y - this.ry) * 0.16;
+    // Easing per frame would slow the ring down further whenever the page
+    // drops frames, which is exactly when it already feels worst, so derive
+    // the factor from elapsed time and keep the feel constant at any rate.
+    const now = performance.now();
+    const dt = Math.min(now - (this.lastFrame || now), 50);
+    this.lastFrame = now;
+    const ease = 1 - Math.pow(1 - 0.38, dt / 16.667);
+
+    this.rx += (x - this.rx) * ease;
+    this.ry += (y - this.ry) * ease;
 
     this.dotRef().nativeElement.style.transform =
       `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;

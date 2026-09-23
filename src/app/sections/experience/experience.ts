@@ -13,7 +13,7 @@ import { EXPERIENCE } from '../../core/resume.data';
 export class ExperienceComponent {
   protected readonly roles = EXPERIENCE;
 
-  /** Index of the open entry — the current role starts expanded. */
+  /** Index of the open entry. The current role starts expanded. */
   protected readonly open = signal(0);
 
   protected toggle(index: number): void {

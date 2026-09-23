@@ -53,7 +53,7 @@ export class CountUpDirective implements OnInit, OnDestroy {
 
     const step = (now: number) => {
       const t = Math.min((now - startedAt) / total, 1);
-      // easeOutExpo — fast off the line, settles softly on the final value.
+      // easeOutExpo: fast off the line, settles softly on the final value.
       const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
       render(Math.round(eased * target));
       if (t < 1) this.frame = requestAnimationFrame(step);

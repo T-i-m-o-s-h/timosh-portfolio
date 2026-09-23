@@ -18,7 +18,7 @@ export class ContactComponent {
 
   private resetTimer?: ReturnType<typeof setTimeout>;
 
-  /** Clipboard access can be denied or unavailable — fall back silently. */
+  /** Clipboard access can be denied or unavailable, so fall back silently. */
   protected async copyEmail(): Promise<void> {
     try {
       await navigator.clipboard.writeText(this.profile.email);

@@ -9,7 +9,7 @@ import { ScrambleDirective } from '../../core/scramble.directive';
   template: `
     <header class="heading">
       <span class="eyebrow" appReveal>
-        <span appScramble>{{ index() }} — {{ label() }}</span>
+        <span appScramble>{{ index() }} / {{ label() }}</span>
       </span>
       <h2 class="heading__title" [appReveal]="90">{{ title() }}</h2>
       @if (lede()) {
