@@ -14,8 +14,17 @@
 
 /* ---- availability pill ---- */
 .hero__status {
+  /* Dot size and line height are declared here so the dot's offset below can
+     be derived from them rather than guessed. The line height matches what is
+     inherited from body, so stating it changes nothing visually. */
+  --dot: 7px;
+  --status-lh: 1.65;
+
   display: inline-flex;
-  align-items: center;
+  /* Not center: once the label wraps, centering floats the dot against the
+     middle of the whole block instead of the line it belongs to. */
+  align-items: flex-start;
+  line-height: var(--status-lh);
   gap: 0.6rem;
   justify-self: start;
   /* Hugs its content, so without this it simply grows past the viewport once
@@ -35,8 +44,13 @@
 
 .hero__pulse {
   position: relative;
-  width: 7px;
-  height: 7px;
+  flex: none;
+  width: var(--dot);
+  height: var(--dot);
+  /* Sit on the optical centre of the first line. With a unitless line height,
+     1em multiplied by it is exactly one line box, so this needs no lh unit
+     and stays correct at any font size. */
+  margin-block-start: calc((var(--status-lh) * 1em - var(--dot)) / 2);
   border-radius: var(--r-full);
   background: var(--accent-2);
 }
